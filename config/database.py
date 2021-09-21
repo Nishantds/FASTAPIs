@@ -20,7 +20,7 @@ sessonLocal=sessionmaker(bind=engine,autocommit=False,autoflush=False)
 Base=declarative_base()
 
 # access token time means use can access with token for 30 min
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
+ACCESS_TOKEN_EXPIRE_MINUTES = 30 
 
 # Our dependency will create a new SQLAlchemy SessionLocal that will be used in a single request,
 #  and then close it once the request is finished

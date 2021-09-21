@@ -24,10 +24,10 @@ def get_own_todos(current_user: models.User = Depends(get_current_user),
    return todos
 
 # path for get current user one blog, get_current_user dependency needs to have a connection to the database
-@router.get("/api/mytodos/{todo_id}", response_model=List[schemas.ShowBlog])
+@router.get("/api/mytodos/{todo_id}", response_model=List[schemas.Blog])
 def get_todo_one(todo_id: int,current_user:models.User=Depends(get_current_user),db:Session=Depends(get_db)):
-    todo=blogcrud.get_user_todos(db, todo_id)
-    return(todo)
+    todo=blogcrud.get_one(db,todo_id)
+    return todo
 
 # path for create  current user blog, get_current_user dependency needs to have a connection to the database
 @router.post("/api/todos", response_model=schemas.ShowBlog)
@@ -41,7 +41,7 @@ def add_a_todo(todo_blog: schemas.Blog,
 # path for update current user blog, get_current_user dependency needs to have a connection to the database
 @router.put("/api/todos/{todo_id}", response_model=schemas.Blog)
 def update_a_todo(todo_id: int,todo_blog: schemas.Blog,current_user: models.User = Depends(get_current_user),db: Session = Depends(get_db)):
-   """update and return TODO for given id"""
+   
 #    todo = blogcrud.get_todo(db, todo_id)
    updated_todo = blogcrud.update_todo(todo_id,db,todo_blog)
    return updated_todo

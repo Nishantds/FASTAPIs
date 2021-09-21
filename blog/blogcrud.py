@@ -42,4 +42,4 @@ def get_user_todos(db: Session, userid: int):
 
 # function for get one blog by id 
 def get_one(db:Session,id:int):
-    return db.query(models.Blog).filter(models.Blog.id==id).first()
+    return db.query(models.Blog).filter(models.Blog.id==id).all()

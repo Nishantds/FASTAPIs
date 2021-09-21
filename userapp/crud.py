@@ -7,8 +7,11 @@ from typing import List,Optional
 from datetime import datetime, timedelta
 from sqlalchemy.orm import Session
 from schemas import schemas
+from userapp import user
 from models import models
 from jose import JWTError, jwt #the application actually secure, using JWT tokens and secure password hashing.
+import random
+import string
 
 # Create a PassLib "context". This is what will be used to hash and verify passwords.
 
@@ -34,6 +37,9 @@ def get_password_hash(password):
 
 def get_user(db, email: str):
     return db.query(models.User).filter(models.User.email==email).first()
+
+
+
 
 
 # function for authenticate user
@@ -63,3 +69,10 @@ def create_user(db:Session,user:schemas.UserCreate):
     db.commit()
     db.refresh(db_user)
     return db_user    
+
+
+
+
+
+
+
